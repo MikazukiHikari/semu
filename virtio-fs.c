@@ -55,10 +55,10 @@ static void virtio_fs_set_fail(virtio_fs_state_t *vfs)
         vfs->InterruptStatus |= VIRTIO_INT__CONF_CHANGE;
 }
 
-static inline uint32_t vfs_preprocess(virtio_fs_state_t *vblk, uint32_t addr)
+static inline uint32_t vfs_preprocess(virtio_fs_state_t *vfs, uint32_t addr)
 {
     if ((addr >= RAM_SIZE) || (addr & 0b11))
-        return virtio_fs_set_fail(vblk), 0;
+        return virtio_fs_set_fail(vfs), 0;
 
     return addr >> 2;
 }
