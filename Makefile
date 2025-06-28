@@ -41,6 +41,14 @@ ifeq ($(call has, VIRTIORNG), 1)
     OBJS_EXTRA += virtio-rng.o
 endif
 
+# virtio-fs
+ENABLE_VIRTIOFS ?= 1
+$(call set-feature, VIRTIOFS)
+ifeq ($(call has, VIRTIOFS), 1)
+    OBJS_EXTRA += virtio-fs.o
+    OPTS += -s ./shared
+endif
+
 NETDEV ?= tap
 # virtio-net
 ENABLE_VIRTIONET ?= 1
